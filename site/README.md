@@ -1,5 +1,4 @@
 # Aplikasi penunjang / website dibangun menggunakan Slimframework 3
-# Slim 3 API skeleton
 
 ## License
 
