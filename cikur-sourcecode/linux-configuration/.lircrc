@@ -1,0 +1,11 @@
+begin
+ prog=irexec
+ button=KEY_UP
+ config=sudo /usr/local/scripts/switch-on.py
+end
+
+begin
+ prog=irexec
+ button=KEY_DOWN
+ config=sudo /usr/local/scripts/switch-off.py
+end

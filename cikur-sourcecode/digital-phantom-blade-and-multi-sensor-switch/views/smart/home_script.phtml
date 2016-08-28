@@ -1,0 +1,115 @@
+<script>
+    <?php foreach($devices as $item): ?>
+    $.ajax({
+        type: "GET",
+        url: "<?= $item['url'] ?>",
+        success: function (data) {
+            var str = data.value;
+            var s = str.split("_");
+            $("#s<?= $item['id']?>Icon").attr("src", "/assets/img/" + s[4]);
+            $("#s<?= $item['id']?>Text").html("<?= $item['name']?> is " + s[1]);
+            $("#s<?= $item['id']?>Btn" + s[1]).show();
+        },
+        error: function () {
+
+        },
+        beforeSend: function () {
+            $("#s<?= $item['id']?>Icon").attr("src", "<?= $item['icon']?>");
+            $("#s<?= $item['id']?>Text").html("Check status");
+            $("button[id^='s<?= $item['id']?>Btn']").hide();
+        }
+    });
+
+    setInterval(function () {
+        if ($("#s<?= $item['id']?>Rfsh").is(":checked")) {
+            $.ajax({
+                type: "GET",
+                url: "<?= $item['url'] ?>",
+                success: function (data) {
+                    var str = data.value;
+                    var s = str.split("_");
+                    $("#s<?= $item['id']?>Icon").attr("src", "/assets/img/" + s[4]);
+                    $("#s<?= $item['id']?>Text").html("<?= $item['name']?> is " + s[1]);
+                    $("#s<?= $item['id']?>Btn" + s[1]).show();
+                },
+                error: function () {
+
+                },
+                beforeSend: function () {
+                    $("#s<?= $item['id']?>Icon").attr("src", "<?= $item['icon']?>");
+                    $("#s<?= $item['id']?>Text").html("Check status");
+                    $("button[id^='s<?= $item['id']?>Btn']").hide();
+                }
+            });
+        }
+    }, 30000);
+
+    $("#s<?= $item['id']?>BtnOFF").on("click", function () {
+        var url = $(this).data('url');
+        var icon = $(this).data('icon');
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                $("#s<?= $item['id']?>Icon").attr("src", icon);
+                $("#s<?= $item['id']?>Text").html("<?= $item['name']?> is ON");
+                $("#s<?= $item['id']?>BtnON").show();
+            },
+            error: function () {
+
+            },
+            beforeSend: function () {
+                $("#s<?= $item['id']?>Icon").attr("src", "<?= $item['icon']?>");
+                $("#s<?= $item['id']?>Text").html("Set status");
+                $("button[id^='s<?= $item['id']?>Btn']").hide();
+            }
+        });
+    });
+
+    $("#s<?= $item['id']?>BtnON").on("click", function () {
+        var url = $(this).data('url');
+        var icon = $(this).data('icon');
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                $("#s<?= $item['id']?>Icon").attr("src", icon);
+                $("#s<?= $item['id']?>Text").html("<?= $item['name']?> is OFF");
+                $("#s<?= $item['id']?>BtnOFF").show();
+            },
+            error: function () {
+
+            },
+            beforeSend: function () {
+                $("#s<?= $item['id']?>Icon").attr("src", "<?= $item['icon']?>");
+                $("#s<?= $item['id']?>Text").html("Set status");
+                $("button[id^='s<?= $item['id']?>Btn']").hide();
+            }
+        });
+    });
+
+    $("#s<?= $item['id']?>ChckStat").on("click", function () {
+        var url = $(this).data('url');
+        var icon = $(this).data('icon');
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var str = data.value;
+                var s = str.split("_");
+                $("#s<?= $item['id']?>Icon").attr("src", "/assets/img/" + s[4]);
+                $("#s<?= $item['id']?>Text").html("<?= $item['name']?> is " + s[1]);
+                $("#s<?= $item['id']?>Btn" + s[1]).show();
+            },
+            error: function () {
+
+            },
+            beforeSend: function () {
+                $("#s<?= $item['id']?>Icon").attr("src", "<?= $item['icon']?>");
+                $("#s<?= $item['id']?>Text").html("Manual check status");
+                $("button[id^='s<?= $item['id']?>Btn']").hide();
+            }
+        });
+    });
+    <?php endforeach; ?>
+</script>

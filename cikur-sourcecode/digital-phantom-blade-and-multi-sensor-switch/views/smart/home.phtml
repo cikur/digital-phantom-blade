@@ -1,0 +1,23 @@
+<?php foreach ($devices as $item): ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <center>
+                <a href="javascript:;">
+                    <img src="<?= $item['icon'] ?>" class="img-responsive" id="s<?= $item['id'] ?>Icon" data-status=""/>
+                </a>
+                <label id="s<?= $item['id'] ?>Text">Status</label>
+                <button class="btn btn-block btn-default" id="s<?= $item['id'] ?>BtnON"
+                        data-url="<?= $item['off']['url'] ?>" data-icon="<?= $item['off']['icon'] ?>">Off
+                </button>
+                <button class="btn btn-block btn-info" id="s<?= $item['id'] ?>BtnOFF"
+                        data-url="<?= $item['on']['url'] ?>" data-icon="<?= $item['on']['icon'] ?>">On
+                </button>
+                <button class="btn btn-block btn-primary" id="s<?= $item['id'] ?>ChckStat"
+                        data-url="<?= $item['url'] ?>" data-icon="<?= $item['icon'] ?>">Check Status Manual
+                </button>
+            </center>
+            <br>
+            <input type="checkbox" id="s<?= $item['id'] ?>Rfsh"> Auto Refresh
+        </div>
+    </div>
+<?php endforeach; ?>

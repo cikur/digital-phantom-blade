@@ -1,0 +1,30 @@
+<script>
+    $(".trash").on("click", function () {
+        var id = $(this).data('id');
+        var row = $(this).data('row');
+        $.ajax({
+            type: "GET",
+            url: "/dpb/url/remove/" + id
+        });
+        $("." + row).remove();
+    });
+
+    $(".sbox").on("change", function () {
+        var id = $(this).data('id');
+        var val = $(this).val();
+        $.ajax({
+            type: "POST",
+            url: "/dpb/url/save",
+            data: {type: val, id: id},
+            success: function () {
+                $(".info" + id).html("<div class='alert alert-info'>Success</div>");
+            },
+            error: function () {
+                $(".info" + id).html("<div class='alert alert-danger'>Error..</div>");
+            },
+            beforeSend:function(){
+                $(".info" + id).html("<div class='alert alert-warning'>Wait..</div>");
+            }
+        });
+    });
+</script>

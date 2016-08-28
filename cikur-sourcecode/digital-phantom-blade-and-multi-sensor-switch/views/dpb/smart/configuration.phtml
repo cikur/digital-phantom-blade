@@ -1,0 +1,19 @@
+<div class="row">
+    <?php foreach ($url as $item): ?>
+        <div class="col-xs-12 u<?= $item['id'] ?>">
+            <?= $item['url'] ?>
+            <div class="clearfix">&nbsp;</div>
+            <button class="trash btn btn-xs btn-danger" data-row="u<?= $item['id'] ?>" data-id="<?= $item['id'] ?>">
+                Delete
+            </button>
+            <select class="sbox" data-id="<?= $item['id'] ?>">
+                <option value="">Select</option>
+                <option value="STATUS">Checking status</option>
+                <option value="ON">ON</option>
+                <option value="OFF">OFF</option>
+            </select>
+            <hr>
+            <div class="info<?= $item['id'] ?>"></div>
+        </div>
+    <?php endforeach; ?>
+</div>

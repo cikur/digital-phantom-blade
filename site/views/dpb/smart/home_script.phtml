@@ -1,0 +1,19 @@
+<script>
+    $(".btn-exe").on("click", function () {
+        var id = $(this).data('id');
+        var url = $("span.uri" + id).data('url');
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                $(".result").html("<div class='alert alert-info'>" + JSON.stringify(data) + "</div>");
+            },
+            error:function(){
+                $(".result").html("<div class='alert alert-danger'>try again</div>");
+            },
+            beforeSend: function(){
+                $(".result").html("<div class='alert alert-warning'>wait</div>");
+            }
+        });
+    });
+</script>
